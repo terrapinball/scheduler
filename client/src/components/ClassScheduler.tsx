@@ -3,10 +3,10 @@ import { Calendar, Moon, Sun, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { ClassEvent, DaySchedule } from '../types';
 import { fetchClasses } from '../services/classService';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useDarkModeContext } from './DarkModeProvider';
 
 const ClassScheduler = () => {
-  const { isDark, toggleDarkMode } = useDarkMode();
+  const { isDark, toggleDarkMode } = useDarkModeContext();
   const [isMonthView, setIsMonthView] = useState(true);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [classes, setClasses] = useState<ClassEvent[]>([]);
@@ -147,7 +147,7 @@ const ClassScheduler = () => {
                 onClick={toggleView}
                 className="px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white transition-colors duration-200"
               >
-                {isMonthView ? 'Week View' : 'Month View'}
+                {isMonthView ? 'Month View' : 'Week View'}
               </button>
               <button
                 onClick={toggleDarkMode}
